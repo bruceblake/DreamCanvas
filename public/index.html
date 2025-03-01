@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DreamCanvas - AI Image Generator</title>
+  
+  <!-- Meta description -->
+  <meta name="description" content="Create stunning AI-generated images with DreamCanvas. Perfect for artists, designers, and creative thinkers.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/logo192.png">
+  
+  <!-- Theme color for browser UI -->
+  <meta name="theme-color" content="#3B82F6">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DreamCanvas - AI Image Generator">
+  <meta property="og:description" content="Transform your ideas into beautiful AI-generated images.">
+  <meta property="og:image" content="/og-image.jpg">
+  <meta property="og:url" content="https://dreamcanvas.app">
+  
+  <!-- Font preloading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Critical CSS -->
+  <style>
+    /* Loading animation */
+    .app-loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom right, #f9fafb, #e5edff);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .app-loading {
+        background: linear-gradient(to bottom right, #111827, #1e2a4a);
+      }
+    }
+    
+    .app-loading-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .app-loading-logo span {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .app-loading-logo::after {
+      content: '';
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%);
+      transform: translateX(-100%);
+      animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+      100% {
+        transform: translateX(100%);
+      }
+    }
+    
+    .app-loading-text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: #4b5563;
+      margin-top: 8px;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .app-loading-text {
+        color: #e5e7eb;
+      }
+    }
+    
+    .app-loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(59, 130, 246, 0.2);
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- Loading state shown before React loads -->
+    <div class="app-loading">
+      <div class="app-loading-logo">
+        <span>AI</span>
+      </div>
+      <div class="app-loading-spinner"></div>
+      <p class="app-loading-text">Loading DreamCanvas...</p>
+    </div>
+  </div>
+  
+  <!-- Firebase App Check (optional but recommended for security)
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-check.js"></script>
+  <script>
+    // This will be activated after deployment
+    // const appCheck = firebase.appCheck();
+    // Pass your reCAPTCHA v3 site key (public key) here
+    // appCheck.activate('your-recaptcha-site-key', true);
+  </script>
+  -->
+  
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
