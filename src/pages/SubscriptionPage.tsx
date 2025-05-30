@@ -10,11 +10,11 @@ import {
   IoRocketOutline,
   IoAlertCircleOutline
 } from 'react-icons/io5';
-import { useAuth } from '../contexts/AuthContext';
+import { useAppSelector } from '@/store';
 import { SUBSCRIPTION_TIERS, updateUserSubscription } from '../services/firebase';
 
 const SubscriptionPage: React.FC = () => {
-  const { currentUser, userData } = useAuth();
+  const { user, profile } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ const SubscriptionPage: React.FC = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [processingPayment, setProcessingPayment] = useState(false);
   
-  if (!currentUser || !userData) {
+  if (!user || !profile) {
     return <Navigate to="/login" />;
   }
   
@@ -54,7 +54,7 @@ const SubscriptionPage: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       // Update user's subscription plan
-      const { success, error } = await updateUserSubscription(currentUser.uid, selectedTier);
+      const { success, error } = await updateUserSubscription(user.uid, selectedTier);
       
       if (error) {
         setError(error);
@@ -111,7 +111,7 @@ const SubscriptionPage: React.FC = () => {
                 icon={<IoFlashOutline className="w-6 h-6" />}
                 color="blue"
                 selected={selectedTier === 'FREE'}
-                current={userData.tier === 'FREE'}
+                current={profile?.subscription?.plan === 'free'}
                 onClick={() => handleTierSelect('FREE')}
               />
 
@@ -125,7 +125,7 @@ const SubscriptionPage: React.FC = () => {
                 color="purple"
                 popular={true}
                 selected={selectedTier === 'BASIC'}
-                current={userData.tier === 'BASIC'}
+                current={profile?.subscription?.plan === 'pro'}
                 onClick={() => handleTierSelect('BASIC')}
               />
 
@@ -138,7 +138,7 @@ const SubscriptionPage: React.FC = () => {
                 icon={<IoColorPaletteOutline className="w-6 h-6" />}
                 color="pink"
                 selected={selectedTier === 'PRO'}
-                current={userData.tier === 'PRO'}
+                current={profile?.subscription?.plan === 'enterprise'}
                 onClick={() => handleTierSelect('PRO')}
               />
 
@@ -151,7 +151,7 @@ const SubscriptionPage: React.FC = () => {
                 icon={<IoRocketOutline className="w-6 h-6" />}
                 color="amber"
                 selected={selectedTier === 'UNLIMITED'}
-                current={userData.tier === 'UNLIMITED'}
+                current={false}
                 onClick={() => handleTierSelect('UNLIMITED')}
               />
             </div>

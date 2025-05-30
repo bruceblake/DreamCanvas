@@ -318,7 +318,7 @@ const ImageDetailPage: React.FC = () => {
                       </div>
                       <div className="bg-gray-50 dark:bg-gray-700/50 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
                         <div className={`inline-flex px-2 py-1 rounded-full text-xs font-medium ${getModelBadgeClass()}`}>
-                          {image.params.modelId?.charAt(0).toUpperCase() + image.params.modelId?.slice(1) || 'Default'}
+                          {image.params?.modelId ? (image.params.modelId.charAt(0).toUpperCase() + image.params.modelId.slice(1)) : 'Default'}
                         </div>
                       </div>
                     </div>

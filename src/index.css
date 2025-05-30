@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,31 +46,46 @@ body {
 
 /* Custom range input styling */
 input[type="range"] {
+  -webkit-appearance: none;
   appearance: none;
-  background-color: #d1d5db;
+  background-color: #e5e7eb;
   height: 0.5rem;
   border-radius: 9999px;
+  outline: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
   appearance: none;
   width: 1.25rem;
   height: 1.25rem;
-  background-color: #2563eb;
+  background-color: #3b82f6;
   border-radius: 9999px;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 input[type="range"]::-moz-range-thumb {
   appearance: none;
   width: 1.25rem;
   height: 1.25rem;
-  background-color: #2563eb;
+  background-color: #3b82f6;
   border-radius: 9999px;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 0;
+  transition: all 0.2s;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode range input */
@@ -78,11 +94,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .dark input[type="range"]::-webkit-slider-thumb {
-  background-color: #3b82f6;
+  background-color: #60a5fa;
 }
 
 .dark input[type="range"]::-moz-range-thumb {
-  background-color: #3b82f6;
+  background-color: #60a5fa;
 }
 
 /* Animation for the loading spinner */
@@ -164,4 +180,40 @@ input[type="range"]::-moz-range-thumb {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+
+/* Custom component styles */
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .dark .glass {
+    background: rgba(17, 24, 39, 0.8);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-primary {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  }
+  
+  .transition-smooth {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .h-18 {
+    height: 4.5rem;
+  }
+  
+  .pt-18 {
+    padding-top: 4.5rem;
+  }
 }
